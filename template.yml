@@ -14,7 +14,7 @@ Parameters:
   KeyPairName:
     Type: String
     Default: ansible
-Refsources:
+Resources:
     MyEIP:
       Type: AWS::EC2::EIP
       Properties:
@@ -39,5 +39,5 @@ Refsources:
           InstanceType: !Ref InstanceTypeParameter
           ImageId: !Ref InstanceImageType
           KeyName: !Ref KeyPairName          
-          SecurityGroupIds:
+          SecurityGroups:
             - !Ref myVPCEc2SecurityGroup
