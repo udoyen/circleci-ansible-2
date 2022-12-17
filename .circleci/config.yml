@@ -20,7 +20,7 @@ jobs:
               aws cloudformation deploy \
                 --template-file template.yml \
                 --stack-name myStack-${CIRCLE_WORKFLOW_ID:0:5} \
-                --region us-east-1
+                --region us-east-1 --parameter-overrides file://params-file.json
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
