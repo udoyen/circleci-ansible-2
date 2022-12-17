@@ -1,0 +1,11 @@
+---
+ - name: Exercise for setting up a web server in an EC
+   hosts: all
+   user: ubuntu
+   vars:
+     NODEJS_VERSION: "12"
+   become: true
+   become_method: sudo
+   become_user: root
+   roles:
+     - setup
