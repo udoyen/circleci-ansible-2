@@ -7,18 +7,10 @@ Parameters:
   InstanceImageType:
     Type: String
     Default: ami-061dbd1209944525c
-  VpcId:
-    Type: String
-  SecurityGroupName:
-    Type: String
   KeyPairName:
     Type: String
     Default: ansible
 Resources:
-    MyEIP:
-      Type: AWS::EC2::EIP
-      Properties:
-        InstanceId: !Ref Ec2Instance
     myVPCEc2SecurityGroup:
        Type: AWS::EC2::SecurityGroup
        Properties:
