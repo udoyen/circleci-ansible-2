@@ -25,7 +25,7 @@ jobs:
     docker:
       - image: python:3.7-alpine3.11
     steps:
-      - checkout
+        - checkout
       - add_ssh_keys:
            fingerprints: ["9d:f4:b2:5c:c5:e4:25:8b:36:67:24:bd:91:19:31:81"]
       - run:
@@ -43,4 +43,7 @@ jobs:
 workflows:
   myworkflow:
     jobs:
-      - configure_infrastructure
+      - create_infrastructure
+      #- configure_infrastructure:
+      #    requires:
+      #      - create_infrastructure
