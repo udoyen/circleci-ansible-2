@@ -1,0 +1,24 @@
+[
+    {
+        "ParameterKey": "InstanceTypeParameter",
+        "ParameterValue": "t3.micro"
+    },
+    {
+        "ParameterKey": "InstanceImageType",
+        "ParameterValue": "ami-061dbd1209944525c"
+    },
+    {
+        "ParameterKey": "VpcId",
+        "ParameterValue": "vpc-0a8d4fee0851ee9aa"
+    },
+    {
+        "ParameterKey": "SecurityGroupName",
+        "ParameterValue": "Udacity-sg"
+    },
+    {
+        "ParmeterKey": "KeyPairName",
+        "ParameterValue": "ansible"
+    
+    }
+
+]

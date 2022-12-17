@@ -1,0 +1,50 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Parameters:
+  InstanceTypeParameter:
+    Type: String
+    Default: t3.micro
+    Description: Enter t3.micro, t2.micro. Default is t3.micro
+  InstanceImageType:
+    Type: String
+    Default: ami-094125af156557ca2
+  VpcId:
+    Type: String
+  SecurityGroupName:
+    Type: String
+  KeyPairName:
+    Type: String
+Refsources:
+    MyEIP:
+      Type: AWS::EC2::EIP
+      Properties:
+        InstanceId: !Ref Ec2Instance
+    myVPCEc2SecurityGroup:
+       Type: AWS::EC2::SecurityGroup
+       Properties:
+          GroupDescription: Allow http to client host
+          GroupName: Udacity-george-sg
+          VpcId: !Ref VpcId
+          SecurityGroupIngress:
+            - IpProtocol: tcp
+              FromPort: 80
+              ToPort: 80
+              CidrIp: 0.0.0.0/0
+            - IpProtocol: tcp
+              FromPort: 22
+              ToPort: 22
+              CidrIp: 0.0.0.0/0
+    Ec2Instance:
+       Type: 'AWS::EC2::Instance'
+       Properties:
+          InstanceType: !Ref InstanceTypeParameter
+          ImageId: !Ref InstanceImageType
+          KeyName: !Ref KeyPairName          
+          UserData:
+            Fn::Base64: !Sub |
+              #!/bin/bash
+              sudo yum update -y
+              sudo yum install -y httpd
+              sudo systemctl start httpd
+              sudo systemctl enable httpd
+          SecurityGroupIds:
+            - !Ref myVPCEc2SecurityGroup
