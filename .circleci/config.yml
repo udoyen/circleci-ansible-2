@@ -53,7 +53,6 @@ jobs:
       - image: amazon/aws-cli
     steps:
       - checkout
-      - run: apk add --update curl
       - run:
          name: smoke test
          command: |
