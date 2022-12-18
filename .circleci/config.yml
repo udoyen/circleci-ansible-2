@@ -31,6 +31,8 @@ jobs:
                 --template-file template.yml \
                 --stack-name myStack-${CIRCLE_WORKFLOW_ID:0:7} \
                 --region us-east-1 
+      - destroy_environment
+
   configure_infrastructure:
     docker:
       - image: python:3.7-alpine3.11
@@ -48,7 +50,7 @@ jobs:
               ansible-playbook -i inventory main-remote.yml 
   smoke_test:
     docker:
-      - image: alpine:latest
+      - image: amazon/aws-cli
     steps:
       - checkout
       - run: apk add --update curl
