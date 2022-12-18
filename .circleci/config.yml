@@ -56,12 +56,14 @@ jobs:
          command: |
              return 1
       - destroy_environment
-    when: on_fail
+        when: on_fail
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
   myworkflow:
     jobs:
-      #- create_infrastructure
+      - create_infrastructure
       - configure_infrastructure
+          requires:
+          - create_infrastructure
